@@ -133,7 +133,10 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
     ]
   }
 }
