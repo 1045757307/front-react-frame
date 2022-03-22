@@ -1,0 +1,16 @@
+**/*.png
+**/*.svg
+*.md
+package.json
+build
+config
+scripts
+public
+LICENSE
+*.sh
+*.snap
+.gitignore
+.prettierignore
+.DS_Store
+.editorconfig
+.eslintignore
