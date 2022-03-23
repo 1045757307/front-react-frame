@@ -219,8 +219,20 @@
      ```
      npm install babel-plugin-import antd @ant-design/pro-layout --save-de
      ```
-   - 在 `webpack.config.js` 文件module中对jsx、tsx等脚本解析的 `plugins` 部分加入antd按需加载的处理，也可以在 `babel.config.js` 文件中配置，效果一样。重启服务后即可正常使用
+   - 在 `webpack.config.js` 文件 module 中对jsx、tsx等脚本解析的 `plugins` 部分加入antd按需加载的处理，也可以在 `babel.config.js` 文件中配置或者在 `package.json` 中 babel 的 `plugins` 中配置，效果一样。重启服务后即可正常使用
      ```
       // antd 按需加载
       ["import", {"libraryName": "antd", "style": true }],
+     ```
+
+2. ag-grid
+   - 安装依赖包
+     ```
+     npm install ag-grid-react ag-grid-enterprise --save-dev
+     ```
+   - 在入口文件index.js中全局引入 ag-grid
+     ```
+     import 'ag-grid-enterprise';
+     import 'ag-grid-community/dist/styles/ag-grid.css';
+     import 'ag-grid-community/dist/styles/ag-theme-balham.css';
      ```
