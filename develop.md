@@ -211,3 +211,16 @@
       }
      ],
      ```
+
+# 插件引入
+
+1. ant design
+   - 安装依赖包 `babel-plugin-import`，`antd` 和 `@ant-design/pro-layout`，其中 `babel-plugin-import` 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式。
+     ```
+     npm install babel-plugin-import antd @ant-design/pro-layout --save-de
+     ```
+   - 在 `webpack.config.js` 文件module中对jsx、tsx等脚本解析的 `plugins` 部分加入antd按需加载的处理，也可以在 `babel.config.js` 文件中配置，效果一样。重启服务后即可正常使用
+     ```
+      // antd 按需加载
+      ["import", {"libraryName": "antd", "style": true }],
+     ```

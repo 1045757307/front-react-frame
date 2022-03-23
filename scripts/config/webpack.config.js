@@ -459,6 +459,8 @@ module.exports = function (webpackEnv) {
                   ],
                 ],
                 plugins: [
+                  // antd 按需加载
+                  ["import", {"libraryName": "antd", "style": true }],
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
                     require.resolve('react-refresh/babel'),
