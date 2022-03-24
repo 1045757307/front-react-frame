@@ -1,7 +1,21 @@
+import React, { useEffect } from 'react';
 import { Spin, Empty } from 'antd';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import axios from '@common';
 
 function App() {
+  useEffect(() => {
+    axios
+      .request({
+        url: '/api/user/current-user',
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
   return (
     <div>
       <Spin></Spin>
