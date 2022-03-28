@@ -1,5 +1,5 @@
 import axios from './utils/request';
-// import ZlMain, { UserContext } from './components/Main';
+import ZlMain, { UserContext } from './components/Main';
 // import ZlPagination from './components/Pagination';
 // import Authorized from './components/Authorized';
 // import ZlDictSelect from './components/Select';
@@ -9,13 +9,13 @@ import axios from './utils/request';
 // export * from './utils/config';
 // export * from './components/GridEditor';
 
-// export {
-//   ZlMain,
-//   UserContext,
-//   ZlPagination,
-//   Authorized,
-//   ZlDictSelect,
-//   ZlTreeSelect,
-// };
+export {
+  ZlMain,
+  UserContext,
+  //   ZlPagination,
+  //   Authorized,
+  //   ZlDictSelect,
+  //   ZlTreeSelect,
+};
 
 export default axios;

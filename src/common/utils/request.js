@@ -128,7 +128,6 @@ class HttpRequest {
       const message = (data && (data.message || statusText)) || statusText;
       switch (status) {
         case 401:
-          // 此处需修改 修改为路由模式
           if (!window.location.pathname.startsWith('/login')) {
             window.location.href = '/login';
           }
