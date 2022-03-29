@@ -1,0 +1,58 @@
+@zl-header-hover-bg: rgba(0, 0, 0, 0.025);
+@zl-primary-color: #1890ff;
+
+.zl-header-dropdown-wrapper > * {
+  background-color: '#fff';
+  border-radius: 4px;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.08),
+    0 9px 28px 0 rgba(0, 0, 0, 0.05), 0 12px 48px 16px rgba(0, 0, 0, 0.03);
+}
+
+@media screen and (max-width: 480px) {
+  .zl-header-dropdown-wrapper {
+    width: 100% !important;
+  }
+  .zl-header-dropdown-wrapper > * {
+    border-radius: 0 !important;
+  }
+}
+
+.zl-header-avatar-menu {
+  .anticon {
+    margin-right: 8px;
+  }
+  .ant-dropdown-menu-item {
+    min-width: 160px;
+  }
+}
+
+.zl-right-cont {
+  display: flex;
+  float: right;
+  height: 48px;
+  margin-left: auto;
+  overflow: hidden;
+  align-items: center;
+  .zl-avatar-wrapper,
+  .zl-help-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    .avatar {
+      margin: 20px 0;
+      margin-right: 8px;
+      color: @zl-primary-color;
+      vertical-align: top;
+      background: rgba(0, 0, 0, 0.25);
+    }
+    > span {
+      vertical-align: middle;
+    }
+    &:hover {
+      background: @zl-header-hover-bg;
+    }
+  }
+}

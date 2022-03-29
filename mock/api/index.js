@@ -29,4 +29,62 @@ router.post('/user/current-user', (req, rep) => {
   });
 });
 
+/**
+ * 获取菜单树
+ */
+router.post('/resource/user-menu', (req, rep) => {
+  rep.send({
+    data: [
+      {
+        aid: '3800a06d202d49178239281ea901c08f',
+        resName: '首页',
+        resCode: '4001',
+        resType: 'nav',
+        resParentId: null,
+        resIcon: 'icon-home',
+        resOrder: 1,
+        resPath: '/home',
+        resStatus: 1,
+        resAppId: '8786cf8bcccd42e796259121c2858485',
+        resCreateTime: 1641434617081,
+        resCreateUser: '61806',
+        child: [],
+      },
+      {
+        aid: '499638fe397241ca809eb86f587ef4d0',
+        resName: '系统管理',
+        resCode: '4002',
+        resType: 'nav',
+        resParentId: null,
+        resIcon: 'icon-mc-sys',
+        resOrder: 99,
+        resPath: '/sys',
+        resStatus: 1,
+        resAppId: '8786cf8bcccd42e796259121c2858485',
+        resCreateTime: 1641434651343,
+        resCreateUser: '61806',
+        child: [
+          {
+            aid: 'eb5b24a7af554f17b8947732bf532472',
+            resName: '字典配置',
+            resCode: '4002002',
+            resType: 'menu',
+            resParentId: '499638fe397241ca809eb86f587ef4d0',
+            resIcon: null,
+            resOrder: 2,
+            resPath: '/sys/dictionaryinfo',
+            resStatus: 1,
+            resAppId: '8786cf8bcccd42e796259121c2858485',
+            resCreateTime: 1641451760304,
+            resCreateUser: '60582',
+            child: [],
+          },
+        ],
+      },
+    ],
+    msg: null,
+    success: true,
+  });
+});
+
 module.exports = router;

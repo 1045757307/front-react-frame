@@ -2,10 +2,9 @@ import ReactDOM from 'react-dom';
 import { Spin, Modal } from 'antd';
 import { parse } from 'querystringify';
 import Cookies from 'js-cookie';
-// import Loadable from 'react-loadable';
 // import KeepAlive from 'react-activation';
-// import axios from './request';
 // import { PageLoading } from '@ant-design/pro-layout';
+// import Loadable from 'react-loadable';
 
 const getCookie = Cookies.get;
 const setCookies = Cookies.set;
@@ -102,48 +101,3 @@ export function setCookie(key, value = '') {
     }
   }
 }
-
-// 动态加载
-// export function dynamicImport(path, isCache) {
-// 	return Loadable({
-// 		loader: () => {
-// 			let loadPath = path;
-// 			// 处理类似/order/detail/:id
-// 			if (path.indexOf('/:') > -1) {
-// 				loadPath = path.replace(/\/:[^/]+/g, '');
-// 			}
-// 			// import路径一定要指定特定目录下，
-// 			// 此处`@pages/${loadPath.slice(1)}`不能写成`@pages${loadPath}`
-// 			// webpack动态import打包机制有关
-// 			return import(`@pages/${loadPath.slice(1)}`);
-// 		},
-// 		loading({ error, timedOut, pastDelay, retry }) {
-// 			if (error) {
-// 				return (
-// 					<div>
-// 						Error! <button onClick={retry}>Retry</button>
-// 					</div>
-// 				);
-// 			} else if (timedOut) {
-// 				return (
-// 					<div>
-// 						Taking a long time... <button onClick={retry}>Retry</button>
-// 					</div>
-// 				);
-// 			} else if (pastDelay) {
-// 				return <div>Loading...</div>;
-// 			}
-// 			return <PageLoading />;
-// 		},
-// 		render: (loaded, props) => {
-// 			const Component = loaded.default;
-// 			if (!isCache) return <Component {...props} />;
-
-// 			return (
-// 				<KeepAlive name={path}>
-// 					<Component {...props} />
-// 				</KeepAlive>
-// 			);
-// 		},
-// 	});
-// }

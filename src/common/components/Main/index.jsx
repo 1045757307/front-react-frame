@@ -1,3 +1,6 @@
+/**
+ * 项目主路由
+ */
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Spin } from 'antd';
