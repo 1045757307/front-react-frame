@@ -5,10 +5,17 @@ import reportWebVitals from './reportWebVitals';
 import 'ag-grid-enterprise';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import './index.less';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/lib/locale/zh_CN';
+import en_US from 'antd/lib/locale/en_US';
+import { getLanguage } from '@common';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ConfigProvider locale={getLanguage() === 'en' ? en_US : zhCN}>
+      <App />
+    </ConfigProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

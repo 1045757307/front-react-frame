@@ -235,7 +235,7 @@ const BasicLayout = props => {
     <WrapperTag>
       <ProLayout
         logo=""
-        title="前端框架"
+        title="前端公共框架"
         fixSiderbar={true}
         contentWidth="Fluid"
         fixedHeader={false}
@@ -266,7 +266,6 @@ const BasicLayout = props => {
             path: '/home',
             breadcrumbName: '首页',
           });
-          console.log(routeData);
           return routeData;
         }}
         footerRender={false}

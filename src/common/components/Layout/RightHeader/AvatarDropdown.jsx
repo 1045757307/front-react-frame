@@ -14,12 +14,12 @@ const AvatarDropdown = props => {
     if (key === 'logout') {
       // 退出登录
       setCookie('token', '');
-      window.location.href = '/login';
+      navigate('/login');
       return;
     }
     // 去个人中心 目前先不用
     if (key === 'ownAuth') {
-      navigate('');
+      // navigate('');
     }
   };
 

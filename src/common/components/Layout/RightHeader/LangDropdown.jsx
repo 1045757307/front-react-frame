@@ -23,7 +23,6 @@ const LangDropdown = () => {
     } else {
       window.location.href = `${window.location.href}?local=${lang}`;
     }
-    // i18n.changeLanguage(lang);
     setCookie('lang', lang);
   };
   const menuHeaderDropdown = (
