@@ -43,17 +43,24 @@ const ZlMain = props => {
   return (
     <BrowserRouter>
       {/* react-router 6后Switch改为Routes */}
-      <Suspense fallback={<Spin />}>
-        <Routes>
-          {/* react-router 6后component改为element，且内容改为组件而非函数 */}
-          <Route path="/login" element={<Login />} />
-          {/* 确认获取用户信息以后才可以加载主框架路由 */}
-          {loading ? (
-            <Route path="*" element={<PageLoading />}></Route>
-          ) : !!userInfo.jobNumber ? (
-            <Route
-              path="*"
-              element={
+      <Routes>
+        {/* react-router 6后component改为element，且内容改为组件而非函数 */}
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<Spin />}>
+              <Login />
+            </Suspense>
+          }
+        />
+        {/* 确认获取用户信息以后才可以加载主框架路由 */}
+        {loading ? (
+          <Route path="*" element={<PageLoading />}></Route>
+        ) : !!userInfo.jobNumber ? (
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Spin />}>
                 <UserContext.Provider value={userInfo}>
                   <BasicLayout
                     topPanesVisible={topPanesVisible}
@@ -61,13 +68,13 @@ const ZlMain = props => {
                     collapsed={collapsed}
                   />
                 </UserContext.Provider>
-              }
-            ></Route>
-          ) : (
-            ''
-          )}
-        </Routes>
-      </Suspense>
+              </Suspense>
+            }
+          ></Route>
+        ) : (
+          ''
+        )}
+      </Routes>
     </BrowserRouter>
   );
 };

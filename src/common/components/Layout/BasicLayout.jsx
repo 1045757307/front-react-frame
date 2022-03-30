@@ -1,8 +1,8 @@
 /**
  * 项目主框架，菜单路由
  */
-import React, { useState, useEffect, lazy } from 'react';
-import ProLayout, { PageContainer } from '@ant-design/pro-layout';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import ProLayout, { PageContainer, PageLoading } from '@ant-design/pro-layout';
 import { message } from 'antd';
 import {
   Link,
@@ -80,9 +80,11 @@ const routeRender = (menuList, isCache) => {
       let RouterElement = <Component />;
       if (isCache) {
         RouterElement = (
-          <KeepAlive name={rePath}>
-            <Component />
-          </KeepAlive>
+          <Suspense fallback={<PageLoading />}>
+            <KeepAlive name={rePath}>
+              <Component />
+            </KeepAlive>
+          </Suspense>
         );
       }
 
@@ -93,7 +95,6 @@ const routeRender = (menuList, isCache) => {
     if (children && children.length) routeRender(children, isCache);
   });
 };
-
 // 当前tab
 let currentTabsItem = {};
 

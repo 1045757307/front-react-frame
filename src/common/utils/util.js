@@ -2,9 +2,6 @@ import ReactDOM from 'react-dom';
 import { Spin, Modal } from 'antd';
 import { parse } from 'querystringify';
 import Cookies from 'js-cookie';
-// import KeepAlive from 'react-activation';
-// import { PageLoading } from '@ant-design/pro-layout';
-// import Loadable from 'react-loadable';
 
 const getCookie = Cookies.get;
 const setCookies = Cookies.set;
