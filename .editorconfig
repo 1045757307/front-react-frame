@@ -1,0 +1,20 @@
+root = true
+
+[*]
+# 编码方式
+charset = utf-8
+# 换行符类型
+end_of_line = lf
+# 缩进大小
+indent_size = 2
+# tab缩进
+indent_style = tab
+# 是否让文件以空行结束
+insert_final_newline = true
+# 最大行宽
+max_line_length = 80
+# 是否删除行尾空格
+trim_trailing_whitespace = true
+
+[COMMIT_EDITMSG]
+max_line_length = 0

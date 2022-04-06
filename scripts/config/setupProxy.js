@@ -22,7 +22,10 @@ module.exports = function(app) {
 		}
 	}
 	app.use(
-    // createProxyMiddleware的第一个参数可以是字符串也可以是数组，如需要设置代理的接口为'/api/user/current-user'，那这里写入'/api'即可
+    /**
+		 * createProxyMiddleware的第一个参数可以是字符串也可以是数组
+		 * 如需要设置代理的接口为'/api/user/current-user'，那这里写入'/api'即可
+		 **/
 		createProxyMiddleware('/api', proxyConfig),
 	);
 }

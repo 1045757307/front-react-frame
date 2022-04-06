@@ -12,12 +12,12 @@ import en_US from 'antd/lib/locale/en_US';
 import { getLanguage } from '@common';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ConfigProvider locale={getLanguage() === 'en' ? en_US : zhCN}>
-      <App />
-    </ConfigProvider>
-  </React.StrictMode>,
-  document.getElementById('root'),
+	<React.StrictMode>
+		<ConfigProvider locale={getLanguage() === 'en' ? en_US : zhCN}>
+			<App />
+		</ConfigProvider>
+	</React.StrictMode>,
+	document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
