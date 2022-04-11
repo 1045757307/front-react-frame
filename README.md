@@ -100,7 +100,15 @@
 6. 框架已存在但需要补充的页面有home(首页) 和login(登录页)，均为空白页面，需要在项目中根据实际需要完成。
 ## 框架启动
 1. 项目安装
+	 - npm install: 安装框架所需所以依赖
+	 - npm prepare：初始化启动husky
+
+	 注意：如果变更包文件，记得重新install
 
 2. 项目启动
+	 - 开发环境: npm run start
+	 - mock开发环境
+	 	 先启动mock服务：npm run mock
+		 再启动项目: npm run start:mock
 
-3. 项目构建
+3. 项目构建: npm run build
