@@ -25,7 +25,7 @@
 
 #### 路径配置 paths.js 文件的修改
 
-把 setupProxy.js 把代理设置放入 scripts/config 目录中，因为代理设置属于构建脚本配置中的一项`proxySetup: resolveApp('scripts/config/setupProxy.js')`
+把 setupProxy.js 把反向代理设置放入 scripts/config 目录中，因为代理设置属于构建脚本配置中的一项`proxySetup: resolveApp('scripts/config/setupProxy.js')`
 
 #### webpack 构建相关 webpack.config.js 文件修改
 
@@ -237,3 +237,29 @@
      import 'ag-grid-community/dist/styles/ag-grid.css';
      import 'ag-grid-community/dist/styles/ag-theme-balham.css';
      ```
+
+## 二次封装 axios 和反向代理配置
+1. axios 的二次封装
+	- 安装 axios
+		```
+		npm install axios --save
+		```
+	- axios 的二次封装在 `src/common/utils/request.js` 文件内实现，具体实现方式可去文件内查看，使用方式为
+	```
+	import axios from '@common';
+	axios
+		.request({
+			url: '',
+			{..params}
+		}).then(data => {
+			...
+		})
+	```
+	在实际项目中可将此步骤封装为方法放入同意的api文件内
+
+2. 反向代理配置
+	- 下载相关依赖
+		```
+		npm i http-proxy-middleware --save -dev
+		```
+	- 在setupProxy.js的文件进行相关配置，setupProxy.js文件的路径在上面有介绍，具体配置方法详见文件。
