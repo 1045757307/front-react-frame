@@ -5,11 +5,11 @@
 import { UserContext } from '../Main';
 
 const Authorized = ({ children, authCode }) => {
-  return (
-    <UserContext.Consumer>
-      {userInfo => (userInfo.powerList.indexOf(authCode) > -1 ? children : '')}
-    </UserContext.Consumer>
-  );
+	return (
+		<UserContext.Consumer>
+			{userInfo => (userInfo.powerList.indexOf(authCode) > -1 ? children : '')}
+		</UserContext.Consumer>
+	);
 };
 
 export default Authorized;

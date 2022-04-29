@@ -10,12 +10,12 @@ export * from './utils/config';
 export * from './components/GridEditor';
 
 export {
-  ZlMain,
-  UserContext,
-  ZlPagination,
-  Authorized,
-  ZlDictSelect,
-  ZlTreeSelect,
+	ZlMain,
+	UserContext,
+	ZlPagination,
+	Authorized,
+	ZlDictSelect,
+	ZlTreeSelect,
 };
 
 export default axios;
