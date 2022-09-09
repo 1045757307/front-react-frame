@@ -17,6 +17,7 @@ import { AliveScope, useAliveController, KeepAlive } from 'react-activation';
 import RightHeader from './RightHeader';
 import axios from '../../utils/request';
 import { iconfontUrl } from '../../utils/config';
+import { cancelAxios } from '../../utils/util';
 
 // 把menu数据处理为统一格式，此步骤存在的目的是为了统一不同接口中返回字段不一致的问题，此后所用的所有数据都基于此步骤之后
 const menuDataRender = menuList =>
@@ -129,11 +130,7 @@ const BasicLayout = props => {
 
 	// 浏览器路由改变
 	useEffect(() => {
-		const cancelTokenList = window.cancelTokenList || [];
-		cancelTokenList.forEach(cancel => {
-			cancel && cancel('取消请求');
-		});
-		window.cancelTokenList = [];
+		cancelAxios();
 	}, [location]);
 
 	useEffect(() => {
