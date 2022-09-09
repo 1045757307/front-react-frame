@@ -121,27 +121,33 @@ class HttpRequest {
 	 */
 	failRequest(extra, url) {
 		return error => {
-			const {
-				response: { status, statusText, data },
-			} = error;
-			this.release(extra, url);
-			const message = (data && (data.message || statusText)) || statusText;
-			switch (status) {
-				case 401:
-					if (!window.location.pathname.startsWith('/login')) {
-						window.location.href = '/login';
-					}
-					return Promise.reject();
-				default:
-					if (extra.isErrorHandle) {
-						return Promise.reject({
-							success: false,
-							message: `${status}: ${message || '请求失败！'}`,
-						});
-					}
-					showError(`${status}: ${message || '请求失败！'}`);
-					// eslint-disable-next-line
-					return Promise.reject();
+			if (error.response) {
+				const {
+					response: { status, statusText, data },
+				} = error;
+				this.release(extra, url);
+				const message = (data && (data.message || statusText)) || statusText;
+				switch (status) {
+					case 401:
+						if (!window.location.pathname.startsWith('/login')) {
+							window.location.href = '/login';
+						}
+						return Promise.reject();
+					default:
+						if (extra.isErrorHandle) {
+							return Promise.reject({
+								success: false,
+								message: `${status}: ${message || '请求失败！'}`,
+							});
+						}
+						showError(`${status}: ${message || '请求失败！'}`);
+						// eslint-disable-next-line
+						return Promise.reject();
+				}
+			} else {
+				// 取消请求
+				this.release(extra, url);
+				return Promise.reject();
 			}
 		};
 	}
@@ -161,6 +167,11 @@ class HttpRequest {
 	 * 获取默认配置
 	 */
 	getDefaultConfig() {
+		const CancelToken = axios.CancelToken;
+		const source = CancelToken.source();
+		const cancelTokenList = window.cancelTokenList || [];
+		cancelTokenList.push(source.cancel);
+		window.cancelTokenList = cancelTokenList;
 		const config = {
 			method: 'post',
 			baseURL: this.baseUrl,
@@ -191,6 +202,7 @@ class HttpRequest {
 				};
 				return headerObj;
 			})(),
+			cancelToken: source.token,
 			extra: {
 				loadingWrapper: undefined, // loading的加载区域 类型为dom元素 非document，document请设置isShowLoading为true
 				isReturnFull: false, // 请求成功的时候是否需要把请求结果全部返回 默认只返回Data数据

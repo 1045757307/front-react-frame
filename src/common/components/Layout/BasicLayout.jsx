@@ -127,6 +127,15 @@ const BasicLayout = props => {
 		}
 	});
 
+	// 浏览器路由改变
+	useEffect(() => {
+		const cancelTokenList = window.cancelTokenList || [];
+		cancelTokenList.forEach(cancel => {
+			cancel && cancel('取消请求');
+		});
+		window.cancelTokenList = [];
+	}, [location]);
+
 	useEffect(() => {
 		setMenuData([]);
 		setLoading(true);
