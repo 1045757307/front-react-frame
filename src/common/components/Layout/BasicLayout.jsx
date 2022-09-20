@@ -1,8 +1,9 @@
 /**
  * 项目主框架，菜单路由
  */
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import ProLayout, { PageContainer, PageLoading } from '@ant-design/pro-layout';
+//  PageLoading  Suspense
+import React, { useState, useEffect, lazy } from 'react';
+import ProLayout, { PageContainer } from '@ant-design/pro-layout';
 import { message } from 'antd';
 import {
 	Link,
@@ -13,7 +14,7 @@ import {
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { parse, stringify } from 'querystringify';
-import { AliveScope, useAliveController, KeepAlive } from 'react-activation';
+// import { AliveScope, useAliveController, KeepAlive } from 'react-activation';
 import RightHeader from './RightHeader';
 import axios from '../../utils/request';
 import { iconfontUrl } from '../../utils/config';
@@ -79,15 +80,15 @@ const routeRender = (menuList, isCache) => {
 			// webpack动态import打包机制有关
 			const Component = lazy(() => import(`@pages/${loadPath.slice(1)}`));
 			let RouterElement = <Component />;
-			if (isCache) {
-				RouterElement = (
-					<Suspense fallback={<PageLoading />}>
-						<KeepAlive name={rePath}>
-							<Component />
-						</KeepAlive>
-					</Suspense>
-				);
-			}
+			// if (isCache) {
+			// 	RouterElement = (
+			// 		<Suspense fallback={<PageLoading />}>
+			// 			<KeepAlive name={rePath}>
+			// 			<Component />
+			// 			</KeepAlive>
+			// 		</Suspense>
+			// 	);
+			// }
 
 			routeList.push(
 				<Route key={resCode} path={rePath} element={RouterElement}></Route>,
@@ -104,7 +105,6 @@ let prePathname = '';
 
 const BasicLayout = props => {
 	const { collapsed = false, topPanesVisible = false, showBreadcrumb } = props;
-	const [siteCount, setSiteCount] = useState(0);
 	const [menuData, setMenuData] = useState([]);
 	const [routeData, setRouteData] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -115,7 +115,7 @@ const BasicLayout = props => {
 	const location = useLocation();
 	const { pathname, search } = location;
 	const history = createBrowserHistory();
-	const { drop } = useAliveController();
+	// const { drop } = useAliveController();
 
 	//监听浏览器地址变化
 	history.listen(({ location: { pathname }, action }) => {
@@ -194,9 +194,6 @@ const BasicLayout = props => {
 			setActiveKey(item.itemPath);
 			setPanes(panes.concat());
 		}
-		if (process.env.REACT_APP_CURRENT_APPNAME === 'mc') {
-			setSiteCount(siteCount + 1);
-		}
 	};
 	const handEdit = (targetKey, action) => {
 		if (action === 'remove') handTabRemove(targetKey); //删除
@@ -227,7 +224,7 @@ const BasicLayout = props => {
 			}
 		}
 		setPanes(newPanes);
-		drop(targetKey); //删除缓存中的tab数据
+		// drop(targetKey); //删除缓存中的tab数据
 		handTabChange(newActiveKey);
 	};
 
@@ -237,9 +234,9 @@ const BasicLayout = props => {
 		navigate(`${key}${search}`);
 	};
 
-	const WrapperTag = topPanesVisible ? AliveScope : React.Fragment;
+	// const WrapperTag = topPanesVisible ? AliveScope : React.Fragment;
 	return (
-		<WrapperTag>
+		<React.Fragment>
 			<ProLayout
 				logo=""
 				title="前端公共框架"
@@ -283,7 +280,7 @@ const BasicLayout = props => {
 						当前模块
 					</a>
 				)}
-				rightContentRender={() => <RightHeader siteCount={siteCount} />}
+				rightContentRender={() => <RightHeader />}
 			>
 				<PageContainer
 					header={Object.assign(
@@ -308,7 +305,7 @@ const BasicLayout = props => {
 					<Routes>{routeData}</Routes>
 				</PageContainer>
 			</ProLayout>
-		</WrapperTag>
+		</React.Fragment>
 	);
 };
 export default BasicLayout;
